@@ -1,3 +1,6 @@
+# fixme: should be defined in base system side
+%define python3_sitelib %(%{__python3} -Ic "from distutils.sysconfig import get_python_lib; print(get_python_lib())")
+
 Name: python3-bashlex
 Summary: Python parser for bash
 Version: bashlex
@@ -16,11 +19,12 @@ bashlex is a Python port of the parser used internally by GNU bash.
 %setup -q -n %{name}-%{version}/python-bashlex
 
 %build
-%py3_build
+%{__python3} -c 'import bashlex'
+CFLAGS="%{optflags}" %{__python3} setup.py build %{?_smp_mflags}
 
 %install
 rm -rf %{buildroot}
-%py3_install
+%{__python3} setup.py install --skip-build --root %{buildroot}
 
 %files
 %license LICENSE
