@@ -1,0 +1,3 @@
+[submodule "python-bashlex"]
+	path = python-bashlex
+	url = https://github.com/sailfishos-mirror/bashlex
