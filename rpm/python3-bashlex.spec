@@ -16,6 +16,7 @@ bashlex is a Python port of the parser used internally by GNU bash.
 %setup -q -n %{name}-%{version}/python-bashlex
 
 %build
+python3 -c 'import bashlex'
 %py3_build
 
 %install
